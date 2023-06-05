@@ -2,12 +2,16 @@
 {
     public class Tag
     {
-        public int Id;      
-        public string tag;
-        public int uses_count;
+        public int Id { get; set; }    
+        public string tag { get; set; }
+        public int uses_count { get; set; }
         public Tag(string name)
         {
             tag="#"+name;
+        }
+        public Tag()
+        {
+
         }
 
     }
