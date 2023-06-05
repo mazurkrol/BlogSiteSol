@@ -12,11 +12,16 @@ namespace BlogSite.Services.PostService
             _postRepository=postRepository;
         }
 
-        public void AddPost(List<Tag> tags, string title, string description, string content)
+        public void AddPost(List<string> tags, string title, string description, string content)
         {
-            
+            List<Tag> tagsList = new List<Tag>();
+            foreach(string word in tags)
+            {
+                if(word != null)
+                tagsList.Add(new Tag(word));
+            }
             Post post = new Post(title, description, content);
-            foreach (Tag tag in tags) 
+            foreach (Tag tag in tagsList) 
             {
                 post.PostTags.Add(new PostTag { Tag = tag });               
             }
