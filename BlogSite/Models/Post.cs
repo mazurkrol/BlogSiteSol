@@ -10,7 +10,7 @@ namespace BlogSite.Models
     public class Post
     {
         public int Id { get; set; }
-        public List<Tag> Tags { get; set; }
+        public List<PostTag> PostTags { get; set; }
         [Column(TypeName = "nvarchar(256)")]
         public string Title { get; set; }
         [Column(TypeName = "nvarchar(256)")]
@@ -18,34 +18,29 @@ namespace BlogSite.Models
         public string Content { get; set; }
         public DateTime Date { get; set; }
 
-        public Post(List<Tag> tags, string title, string description, string content)
+        public Post(string title, string description, string content)
         {
-            Tags = tags;
             Title=title;
             Description=description;
             Content=content;
             Date = DateTime.Now;
+            PostTags=new List<PostTag>();
         }
         public Post()
         {
-            Tags=new List<Tag>();
+            PostTags=new List<PostTag>();
             Date=DateTime.Now;
         }
-        public List<Tag> GetTags()
+       /* public List<Tag> GetTags()
         {
-            //List<Tag> list = new List<Tag>();
-            //list=JsonConvert.DeserializeObject(this.Tags) as List<Tag>;
+            List<Tag> list = new List<Tag>();
+            list=JsonConvert.DeserializeObject(this.Tags) as List<Tag>;
             return Tags;
         }
+       */
         public bool CheckIfTagged(int TagId)
         {
-            List<Tag> tags = this.GetTags();
-            foreach(Tag tag in tags) 
-            {
-                if (tag.Id == TagId)
-                    return true;
-            }
-            return false;
+            return true;
         }
 
     }

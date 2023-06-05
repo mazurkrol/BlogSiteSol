@@ -4,6 +4,7 @@ using BlogSite.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BlogSite.Migrations.BlogSiteDb
 {
     [DbContext(typeof(BlogSiteDbContext))]
-    partial class BlogSiteDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230605150121_newDbSet")]
+    partial class newDbSet
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -81,9 +83,12 @@ namespace BlogSite.Migrations.BlogSiteDb
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<string>("Text")
+                    b.Property<string>("tag")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("uses_count")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
